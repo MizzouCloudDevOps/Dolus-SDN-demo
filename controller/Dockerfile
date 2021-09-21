@@ -8,4 +8,4 @@ RUN composer install \
     && chmod -R 777 storage \
     && chmod -R 775 .env \
     && php artisan key:generate
-CMD service mysql start && service apache2 start
+CMD service mysql start && service apache2 start && bash
