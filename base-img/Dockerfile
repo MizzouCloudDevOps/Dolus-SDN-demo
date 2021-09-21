@@ -9,8 +9,8 @@ RUN wget http://openvswitch.org/releases/openvswitch-2.11.0.tar.gz \
 WORKDIR /openvswitch-2.11.0
 RUN ./boot.sh \
     && ./configure --disable-ssl --disable-libcapng \
-    && make || checkErr "Open vSwitch installation error..." \
-    && make install || checkErr "Open vSwitch installation error..." \
+    && make \
+    && make install \
     && make modules_install \
     && modprobe openvswitch
 RUN mkdir -p /usr/local/etc/openvswitch \
