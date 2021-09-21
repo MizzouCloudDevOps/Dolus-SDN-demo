@@ -5,7 +5,7 @@ services:
         build: ./controller
         image: controller:latest
         container_name: controller
-        command: bash -c "service apache2 start && service mysql start && bash"
+        command: service apache2 start && service mysql start && bash
         tty: true
         cap_add: 
            - ALL
@@ -21,7 +21,7 @@ services:
         build: ./root-switch
         image: rootswitch:latest
         container_name: rootswitch
-        command: bash -c "bash /local/rootSwitch_config.sh {{Controller_Public_IP}}"
+        command: bash /local/rootSwitch_config.sh ${Controller_Public_IP}
         tty: true
         cap_add:
             - ALL
@@ -34,7 +34,7 @@ services:
         build: ./slave-switch
         image: slaveswitch:latest
         container_name: slaveswitch
-        command: bash -c "bash /local/slaveSwitch_config.sh {{Controller_Public_IP}"
+        command: bash /local/slaveSwitch_config.sh ${Controller_Public_IP}
         tty: true
         cap_add:
             - ALL
@@ -47,7 +47,7 @@ services:
         build: ./server
         image: server:latest
         container_name: server
-        command: bash -c "bash /local/server_config.sh"
+        command: bash /local/server_config.sh
         tty: true
         cap_add:
             - ALL
@@ -60,7 +60,7 @@ services:
         build: ./attacker
         image: attacker:latest
         container_name: attacker
-        command: bash -c "bash /local/attacker_config.sh"
+        command: bash /local/attacker_config.sh
         tty: true
         cap_add:
             - ALL
@@ -73,7 +73,7 @@ services:
         build: ./qvm
         image: qvm:latest
         container_name: qvm
-        command: bash -c "bash /local/qvm_config.sh"
+        command: bash /local/qvm_config.sh
         tty: true
         cap_add:
             - ALL
@@ -86,7 +86,7 @@ services:
         build: ./user
         image: user:latest
         container_name: user
-        command: bash -c "bash /local/user_config.sh"
+        command: bash /local/user_config.sh
         tty: true
         cap_add:
             - ALL
