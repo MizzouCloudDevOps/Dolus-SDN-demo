@@ -5,6 +5,8 @@ services:
         build: ./controller
         image: controller:latest
         container_name: controller
+        command: service apache2 start && service mysql start && bash
+        stdin_open: true
         tty: true
         cap_add: 
            - ALL
@@ -21,6 +23,8 @@ services:
         build: ./root-switch
         image: rootswitch:latest
         container_name: rootswitch
+        command: bash /local/rootSwitch_config.sh ${Controller_Public_IP}
+        stdin_open: true
         tty: true
         cap_add:
             - ALL
@@ -34,6 +38,8 @@ services:
         build: ./slave-switch
         image: slaveswitch:latest
         container_name: slaveswitch
+        command: bash /local/slaveSwitch_config.sh ${Controller_Public_IP}
+        stdin_open: true
         tty: true
         restart: always
         cap_add:
@@ -47,6 +53,8 @@ services:
         build: ./server
         image: server:latest
         container_name: server
+        command: bash /local/server_config.sh
+        stdin_open: true
         restart: always
         tty: true
         cap_add:
@@ -60,7 +68,9 @@ services:
         build: ./attacker
         image: attacker:latest
         container_name: attacker
+        command: bash /local/attacker_config.sh
         restart: always
+        stdin_open: true
         tty: true
         cap_add:
             - ALL
@@ -73,7 +83,9 @@ services:
         build: ./qvm
         image: qvm:latest
         container_name: qvm
+        command: bash /local/qvm_config.sh
         restart: always
+        stdin_open: true
         tty: true
         cap_add:
             - ALL
@@ -86,7 +98,9 @@ services:
         build: ./user
         image: user:latest
         container_name: user
+        command: bash /local/user_config.sh
         restart: always
+        stdin_open: true
         tty: true
         cap_add:
             - ALL
