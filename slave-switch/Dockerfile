@@ -1,10 +1,4 @@
-FROM debian
+FROM mizzouceri/ovs-base:latest
 MAINTAINER Songjie Wang "wangso@missouri.edu"
 
-RUN apt -y update
-RUN mkdir /local
-COPY local/* /local/.
-WORKDIR /local
-RUN bash ./slave-switch_config.sh
-
- 
+COPY local/* /local/. 
