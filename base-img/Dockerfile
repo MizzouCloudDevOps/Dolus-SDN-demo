@@ -1,7 +1,7 @@
 FROM debian
-RUN apt -y update \
-    && apt -y install git automake autoconf gcc uml-utilities libtool build-essential git \
-	pkg-config linux-headers-$(uname -r) iperf screen python3-pip wget
+RUN apt-get -y update \
+    && apt-get -y install git automake autoconf gcc uml-utilities libtool build-essential git \
+	pkg-config linux-headers-amd64 iperf screen python3-pip wget
 
 WORKDIR /local
 RUN wget http://openvswitch.org/releases/openvswitch-2.11.0.tar.gz \
