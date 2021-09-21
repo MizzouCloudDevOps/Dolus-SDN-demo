@@ -28,7 +28,7 @@ services:
         privileged: true
         networks:
             localNet:
-                ipv4_address: 172.17.0.3
+                ipv4_address: 172.18.0.3
 
     slaveSwitch:
         build: ./slave-switch
