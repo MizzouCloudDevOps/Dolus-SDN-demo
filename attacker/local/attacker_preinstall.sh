@@ -1,2 +1,1 @@
-apt-get -y update 
-apt-get -y install slowhttptest
+apt-get -y update && apt-get -y install slowhttptest
