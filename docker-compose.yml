@@ -34,7 +34,7 @@ services:
         image: slaveswitch:latest
         container_name: slaveswitch
         command: bash -c "bash /local/slaveSwitch_config.sh ${Controller_Public_IP}"
-       tty: true
+        tty: true
         cap_add:
             - ALL
         privileged: true
