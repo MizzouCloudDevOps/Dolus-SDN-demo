@@ -21,7 +21,7 @@ services:
         build: ./root-switch
         image: rootswitch:latest
         container_name: rootswitch
-        command: bash -c "bash /local/rootSwitch_config.sh ${Controller_Public_IP}"
+        command: bash -c "bash /local/rootSwitch_config.sh {{Controller_Public_IP}}"
         tty: true
         cap_add:
             - ALL
@@ -34,7 +34,7 @@ services:
         build: ./slave-switch
         image: slaveswitch:latest
         container_name: slaveswitch
-        command: bash -c "bash /local/slaveSwitch_config.sh ${Controller_Public_IP}"
+        command: bash -c "bash /local/slaveSwitch_config.sh {{Controller_Public_IP}"
         tty: true
         cap_add:
             - ALL
