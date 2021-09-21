@@ -2,11 +2,11 @@ FROM debian
 RUN apt-get -y update \
     && apt-get -y install apt-utils git automake autoconf gcc \
     uml-utilities libtool build-essential git pkg-config \
-     iperf screen python3-pip wget software-properties-common
+     iperf screen python3-pip wget software-properties-common \
+     python-six
 WORKDIR /
 RUN wget http://openvswitch.org/releases/openvswitch-2.11.0.tar.gz \
     && tar xvfz openvswitch-2.11.0.tar.gz
-RUN pip install --ignore-installed six
 WORKDIR /openvswitch-2.11.0
 RUN ./boot.sh \
     && ./configure --disable-ssl --disable-libcapng \
