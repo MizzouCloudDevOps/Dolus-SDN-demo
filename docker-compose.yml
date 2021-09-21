@@ -1,0 +1,95 @@
+version: "3"
+
+services:
+    Controller: 
+        build: ./controller
+        image: controller:latest
+        container_name: controller
+        tty: true
+        cap_add: 
+           - ALL
+        privileged: true
+        ports: 
+          - 3306:3306
+          - 33060:33060
+          - 80:80
+          - 6633:6633
+    RootSwitch:
+        build: ./root-switch
+        image: rootswitch:latest
+        container_name: rootswitch
+        tty: true
+        cap_add:
+            - ALL
+        privileged: true
+        networks:
+            localNet:
+                ipv4_address: 172.17.0.3
+
+    SlaveSwitch:
+        build: ./slave-switch
+        image: slaveswitch:latest
+        container_name: slaveswitch
+        tty: true
+        cap_add:
+            - ALL
+        privileged: true
+        networks:
+            localNet:
+                ipv4_address: 172.18.0.4
+
+    Server:
+        build: ./server
+        image: server:latest
+        container_name: server
+        tty: true
+        cap_add:
+            - ALL
+        privileged: true
+        networks:
+            localNet:
+                ipv4_address: 172.18.0.5
+
+    Attacker:
+        build: ./attacker
+        image: attacker:latest
+        container_name: attacker
+        tty: true
+        cap_add:
+            - ALL
+        privileged: true
+        networks:
+            localNet:
+                ipv4_address: 172.18.0.6
+
+    QVM:
+        build: ./qvm
+        image: qvm:latest
+        container_name: qvm
+        tty: true
+        cap_add:
+            - ALL
+        privileged: true
+        networks:
+            localNet:
+                ipv4_address: 172.18.0.7
+    
+    User:
+        build: ./user
+        image: user:latest
+        container_name: user
+        tty: true
+        cap_add:
+            - ALL
+        privileged: true
+        network_mode: host
+        networks:
+            localNet:
+                ipv4_address: 172.18.0.8
+
+networks:
+    localNet:
+        ipam:
+            config:
+                - subnet: 172.18.0.0/24
+
