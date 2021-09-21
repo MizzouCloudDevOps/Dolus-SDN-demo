@@ -1,7 +1,7 @@
-version: "3"
+version: "3.0"
 
 services:
-    Controller: 
+    controller: 
         build: ./controller
         image: controller:latest
         container_name: controller
@@ -16,7 +16,7 @@ services:
           - 80:80
           - 6633:6633
 
-    RootSwitch:
+    rootSwitch:
         build: ./root-switch
         image: rootswitch:latest
         container_name: rootswitch
@@ -29,7 +29,7 @@ services:
             localNet:
                 ipv4_address: 172.17.0.3
 
-    SlaveSwitch:
+    slaveSwitch:
         build: ./slave-switch
         image: slaveswitch:latest
         container_name: slaveswitch
@@ -42,7 +42,7 @@ services:
             localNet:
                 ipv4_address: 172.18.0.4
 
-    Server:
+    server:
         build: ./server
         image: server:latest
         container_name: server
@@ -55,7 +55,7 @@ services:
             localNet:
                 ipv4_address: 172.18.0.5
 
-    Attacker:
+    attacker:
         build: ./attacker
         image: attacker:latest
         container_name: attacker
@@ -68,7 +68,7 @@ services:
             localNet:
                 ipv4_address: 172.18.0.6
 
-    QVM:
+    qvm:
         build: ./qvm
         image: qvm:latest
         container_name: qvm
@@ -81,7 +81,7 @@ services:
             localNet:
                 ipv4_address: 172.18.0.7
     
-    User:
+    user:
         build: ./user
         image: user:latest
         container_name: user
