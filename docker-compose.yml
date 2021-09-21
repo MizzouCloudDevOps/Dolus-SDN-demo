@@ -11,6 +11,7 @@ services:
            - ALL
         network_mode: host
         privileged: true
+        restart: always
         ports: 
           - 3306:3306
           - 33060:33060
@@ -25,6 +26,7 @@ services:
         tty: true
         cap_add:
             - ALL
+        restart: always
         privileged: true
         networks:
             localNet:
@@ -36,6 +38,7 @@ services:
         container_name: slaveswitch
         command: bash /local/slaveSwitch_config.sh ${Controller_Public_IP}
         tty: true
+        restart: always
         cap_add:
             - ALL
         privileged: true
@@ -48,6 +51,7 @@ services:
         image: server:latest
         container_name: server
         command: bash /local/server_config.sh
+        restart: always
         tty: true
         cap_add:
             - ALL
@@ -61,6 +65,7 @@ services:
         image: attacker:latest
         container_name: attacker
         command: bash /local/attacker_config.sh
+        restart: always
         tty: true
         cap_add:
             - ALL
@@ -74,6 +79,7 @@ services:
         image: qvm:latest
         container_name: qvm
         command: bash /local/qvm_config.sh
+        restart: always
         tty: true
         cap_add:
             - ALL
@@ -87,6 +93,7 @@ services:
         image: user:latest
         container_name: user
         command: bash /local/user_config.sh
+        restart: always
         tty: true
         cap_add:
             - ALL
