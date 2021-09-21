@@ -3,4 +3,5 @@ MAINTAINER Songjie Wang "wangso@missouri.edu"
 
 COPY local/* /local/
 WORKDIR /local
-RUN bash ./attacker_preinstall.sh
+RUN apt-get -y update && apt-get -y install slowhttptest
+
