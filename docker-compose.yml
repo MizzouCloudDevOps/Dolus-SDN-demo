@@ -1,4 +1,4 @@
-version: "3"
+version: ``3"
 
 services:
     controller:
@@ -6,8 +6,6 @@ services:
         image: controller:latest
         container_name: controller
         tty: true
-        cap_add: 
-           - ALL
         network_mode: host
         privileged: true
         restart: always
@@ -22,8 +20,6 @@ services:
         image: rootswitch:latest
         container_name: rootswitch
         tty: true
-        cap_add:
-            - ALL
         restart: always
         privileged: true
         networks:
@@ -36,8 +32,6 @@ services:
         container_name: slaveswitch
         tty: true
         restart: always
-        cap_add:
-            - ALL
         privileged: true
         networks:
             localNet:
@@ -49,8 +43,6 @@ services:
         container_name: server
         restart: always
         tty: true
-        cap_add:
-            - ALL
         privileged: true
         networks:
             localNet:
@@ -62,8 +54,6 @@ services:
         container_name: attacker
         restart: always
         tty: true
-        cap_add:
-            - ALL
         privileged: true
         networks:
             localNet:
@@ -75,8 +65,6 @@ services:
         container_name: qvm
         restart: always
         tty: true
-        cap_add:
-            - ALL
         privileged: true
         networks:
             localNet:
@@ -88,8 +76,6 @@ services:
         container_name: user
         restart: always
         tty: true
-        cap_add:
-            - ALL
         privileged: true
         networks:
             localNet:
@@ -100,4 +86,3 @@ networks:
         ipam:
             config:
                 - subnet: 172.18.0.0/24
-
