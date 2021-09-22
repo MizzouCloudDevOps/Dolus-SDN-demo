@@ -36,7 +36,7 @@ ovs-vsctl add-br br0 || checkErr "setting up bridge error..."
 
 
 # setup VXLAN connections
-echo -e "\n#{BLUE}Setting up VXLAN connections ... \n"
+echo -e "\n${BLUE}Setting up VXLAN connections ... \n"
 ovs-vsctl add-port br0 eth1 -- set interface eth1 type=vxlan options:remote_ip=172.18.0.4 options:key=2001
 ovs-vsctl add-port br0 eth2 -- set interface eth2 type=vxlan options:remote_ip=172.18.0.5 options:key=2002
 

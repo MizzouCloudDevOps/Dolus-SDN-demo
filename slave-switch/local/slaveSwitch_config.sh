@@ -33,7 +33,7 @@ echo -e "\n${BLUE}Setting up briges... ${NC}\n"
 ovs-vsctl add-br br0 || checkErr "setting up bridge error..."
 
 # setup VXLAN connections
-echo -e "\n#{BLUE}Setting up VXLAN connections among all nodes... \n"
+echo -e "\n${BLUE}Setting up VXLAN connections among all nodes... \n"
 ovs-vsctl add-port br0 eth1 -- set interface eth1 type=vxlan options:remote_ip=172.18.0.3 options:key=2001
 ovs-vsctl add-port br0 eth2 -- set interface eth2 type=vxlan options:remote_ip=172.18.0.6 options:key=2002
 ovs-vsctl add-port br0 eth3 -- set interface eth3 type=vxlan options:remote_ip=172.18.0.7 options:key=2003

@@ -28,7 +28,7 @@ echo -e "\n${BLUE}Setting up server node ${NC}"
 docker exec server bash -c "bash /local/server_config.sh" || checkErr "Configuring Server"
 
 echo -e "\n${BLUE}Setting up attacker node ${NC}"
-docker exec attacker bash -c "bash /local/attacker_config.sh && bash /local/attacker_preinstall.sh" || checkErr "Configuring Attacker"
+docker exec attacker bash -c "bash /local/attacker_config.sh" || checkErr "Configuring Attacker"
 
 echo -e "\n${BLUE}Setting up user node ${NC}"
 docker exec user bash -c "bash /local/user_config.sh" || checkErr "Configuring User"
