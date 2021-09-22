@@ -31,7 +31,7 @@ echo -e "\n${GREEN}Open vswitch service started on Root Switch ... ${NC}\n"
 sleep 2
 
 # set up bridges
-echo -e "\n${BLUE}Setting up briges... ${NC}\n"
+echo -e "\n${BLUE}Setting up briges on Root Switch ... ${NC}\n"
 ovs-vsctl add-br br0 || checkErr "Setting up bridge on Root Switch"
 
 

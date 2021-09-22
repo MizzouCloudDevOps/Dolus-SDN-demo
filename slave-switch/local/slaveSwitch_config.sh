@@ -29,7 +29,7 @@ ovs-vswitchd --pidfile >/var/log/vswitchd.log 2>&1 &
 echo -e "\n${GREEN}Open vswitch service started on Slave Switch ... ${NC}\n"
 sleep 2
 # set up bridges
-echo -e "\n${BLUE}Setting up briges... ${NC}\n"
+echo -e "\n${BLUE}Setting up briges on Slave Switch ... ${NC}\n"
 ovs-vsctl add-br br0 || checkErr "Setting up bridge on Slave Switch"
 
 # setup VXLAN connections
