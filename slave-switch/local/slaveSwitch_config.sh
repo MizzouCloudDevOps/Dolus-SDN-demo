@@ -26,19 +26,19 @@ ovsdb-server -v --log-file --pidfile --remote=punix:/usr/local/var/run/openvswit
 sleep 2
 # run ovs switch
 ovs-vswitchd --pidfile >/var/log/vswitchd.log 2>&1 &
-echo -e "\n${GREEN}Open vswitch service started... ${NC}\n"
+echo -e "\n${GREEN}Open vswitch service started on Slave Switch ... ${NC}\n"
 sleep 2
 # set up bridges
 echo -e "\n${BLUE}Setting up briges... ${NC}\n"
-ovs-vsctl add-br br0 || checkErr "setting up bridge error..."
+ovs-vsctl add-br br0 || checkErr "Setting up bridge on Slave Switch"
 
 # setup VXLAN connections
-echo -e "\n${BLUE}Setting up VXLAN connections among all nodes... \n"
+echo -e "\n${BLUE}Setting up VXLAN connections on Slave Switch ... \n"
 ovs-vsctl add-port br0 eth1 -- set interface eth1 type=vxlan options:remote_ip=172.18.0.3 options:key=2001
 ovs-vsctl add-port br0 eth2 -- set interface eth2 type=vxlan options:remote_ip=172.18.0.6 options:key=2002
 ovs-vsctl add-port br0 eth3 -- set interface eth3 type=vxlan options:remote_ip=172.18.0.7 options:key=2003
 ovs-vsctl add-port br0 eth4 -- set interface eth4 type=vxlan options:remote_ip=172.18.0.8 options:key=2004
 
-ovs-vsctl set-controller br0 tcp:"$1":6633 || checkErr "Networking configuration"
+ovs-vsctl set-controller br0 tcp:"$1":6633 || checkErr "Network configuration on Slave Switch"
 
 ifconfig br0 100.0.0.101 mtu 1400 up

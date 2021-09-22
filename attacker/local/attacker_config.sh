@@ -17,14 +17,14 @@ ovsdb-server -v --log-file --pidfile --remote=punix:/usr/local/var/run/openvswit
 sleep 1
 # run ovs switch
 ovs-vswitchd --pidfile >/var/log/vswitchd.log 2>&1 &
-echo -e "\n${GREEN}Open vswitch service started... ${NC}\n"
+echo -e "\n${GREEN}Open vswitch service started on Attacker node ... ${NC}\n"
 sleep 1
 
 # set up bridges
-echo -e "\n${BLUE}Setting up briges... ${NC}\n"
-ovs-vsctl add-br br0 || checkErr "setting up bridge error..."
+echo -e "\n${BLUE}Setting up briges on Attacker node ... ${NC}\n"
+ovs-vsctl add-br br0 || checkErr "Setting up bridge on Attacker node"
 
 # setup VXLAN connections
-echo -e "\n${BLUE}Setting up VXLAN connections... ${NC}\n"
-ovs-vsctl add-port br0 eth1 -- set interface eth1 type=vxlan options:remote_ip=172.18.0.4 options:key=2002
+echo -e "\n${BLUE}Setting up VXLAN connections on Attacker node ... ${NC}\n"
+ovs-vsctl add-port br0 eth1 -- set interface eth1 type=vxlan options:remote_ip=172.18.0.4 options:key=2002 || checkErr "Network configuration on Attacker node"
 ifconfig br0 100.0.0.103 mtu 1400 up
