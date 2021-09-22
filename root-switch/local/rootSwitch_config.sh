@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# $1 is the public IP of your computer (local IP if you are using a router based home network)
-
 #Color declarations
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -39,7 +37,5 @@ ovs-vsctl add-br br0 || checkErr "Setting up bridge on Root Switch"
 echo -e "\n${BLUE}Setting up VXLAN connections on Root Switch ... \n"
 ovs-vsctl add-port br0 eth1 -- set interface eth1 type=vxlan options:remote_ip=172.18.0.4 options:key=2001
 ovs-vsctl add-port br0 eth2 -- set interface eth2 type=vxlan options:remote_ip=172.18.0.5 options:key=2002
-
-ovs-vsctl set-controller br0 tcp:"$1":6633 || checkErr "Network configuration on Root Switch"
 
 ifconfig br0 100.0.0.100 mtu 1400 up

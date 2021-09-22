@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# $1 is the public IP of your computer (local IP if you are using a router based home network)
-
 #Color declarations
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -38,7 +36,5 @@ ovs-vsctl add-port br0 eth1 -- set interface eth1 type=vxlan options:remote_ip=1
 ovs-vsctl add-port br0 eth2 -- set interface eth2 type=vxlan options:remote_ip=172.18.0.6 options:key=2002
 ovs-vsctl add-port br0 eth3 -- set interface eth3 type=vxlan options:remote_ip=172.18.0.7 options:key=2003
 ovs-vsctl add-port br0 eth4 -- set interface eth4 type=vxlan options:remote_ip=172.18.0.8 options:key=2004
-
-ovs-vsctl set-controller br0 tcp:"$1":6633 || checkErr "Network configuration on Slave Switch"
 
 ifconfig br0 100.0.0.101 mtu 1400 up
