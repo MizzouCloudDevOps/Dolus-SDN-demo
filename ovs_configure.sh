@@ -6,8 +6,6 @@ export Controller_Public_IP=$(dig +short myip.opendns.com @resolver1.opendns.com
 echo "Controller public IP address is: "
 echo $Controller_Public_IP
 
-echo "Setting up controller switch node "
-docker exec controller bash -c "service apache2 start && service mysql start && bash"
 echo "Setting up slave switch node "
 docker exec rootswitch bash -c "bash /local/rootSwitch_config.sh ${Controller_Public_IP}"
 echo "Setting up slave switch node "
